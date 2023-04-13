@@ -125,7 +125,7 @@ class HttpRequestUtilsTest {
         // then
         assertThat(headersParam).isEqualTo(expectedHeaders);
     }
-    
+
     @Test
     @DisplayName("getRequestBody 메소드가 지정된 길이까지 요청 바디를 잘 반환하는지 테스트")
     public void getRequestBody() throws Exception {
@@ -138,11 +138,11 @@ class HttpRequestUtilsTest {
 
         // when
         String requestBodyParam = HttpRequestUtils.getRequestBody(br, contentLength);
-        
+
         // then
         assertThat(requestBodyParam).isEqualTo(expectedRequestBody);
     }
-    
+
     @Test
     @DisplayName("이부분채워주셈")
     public void joinWithPOST() throws Exception {
