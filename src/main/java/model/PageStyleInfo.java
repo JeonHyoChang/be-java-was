@@ -1,10 +1,10 @@
 package model;
 
-public class Stylesheet {
+public class PageStyleInfo {
     private final String contentType;
     private final String pathName;
 
-    public Stylesheet(String contentType, String pathName) {
+    public PageStyleInfo(String contentType, String pathName) {
         this.contentType = contentType;
         this.pathName = pathName;
     }

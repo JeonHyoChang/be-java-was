@@ -8,6 +8,6 @@ public class StylesheetUtils {
     }
 
     public static String getPathName(String url) {
-        return ContentType.of(url).getPathName();
+        return ContentType.of(url).getPathName() + url;
     }
 }

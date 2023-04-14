@@ -10,13 +10,13 @@ import java.io.IOException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class POSTHandlerTest {
-    private POSTHandler postHandler;
+class PostHandlerTest {
+    private PostHandler postHandler;
 
     @BeforeEach
     void setup() {
         String requestBody = "userId=john123&password=password123&name=John+Doe&email=john%40example.com";
-        postHandler = new POSTHandler(requestBody);
+        postHandler = new PostHandler(requestBody);
     }
 
     @Test

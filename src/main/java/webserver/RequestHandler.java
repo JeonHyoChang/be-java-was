@@ -1,6 +1,6 @@
 package webserver;
 
-import model.RequestInfo;
+import model.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import util.HttpRequestUtils;
@@ -30,20 +30,20 @@ public class RequestHandler implements Runnable {
             logger.debug("startLine: {}", startLine);
 
             // RequestInfo
-            RequestInfo reqInfo = new RequestInfo(reqUtils.getMethod(startLine), // method 설정
+            HttpRequest reqInfo = new HttpRequest(reqUtils.getMethod(startLine), // method 설정
                     reqUtils.getUrl(startLine), // path 설정
                     reqUtils.getRequestHeaders(br)); // header 정보 => Map<String, String>
             DataOutputStream dos = new DataOutputStream(out);
 
             // GETHandler
-            if (reqInfo.comparingMethod("GET")) {
-                GETHandler.doGet(reqInfo.getUrl(), dos);
+            if (reqInfo.equalsMethod("GET")) {
+                GetHandler.doGet(reqInfo.getUrl(), dos);
             }
 
             // POSTHandler
-            if (reqInfo.comparingMethod("POST")) {
-                int contentLength = Integer.parseInt(reqInfo.getHeaderData("Content-Length"));
-                POSTHandler postHandler = new POSTHandler(reqUtils.getRequestBody(br, contentLength));
+            if (reqInfo.equalsMethod("POST")) {
+                int contentLength = Integer.parseInt(reqInfo.getHeader("Content-Length"));
+                PostHandler postHandler = new PostHandler(reqUtils.getRequestBody(br, contentLength));
 
                 postHandler.doPost(reqInfo.getUrl(), dos);
             }
